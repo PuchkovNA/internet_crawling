@@ -1,0 +1,16 @@
+language: python
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -U pytest
+  - pip install codecov
+install:
+  - pip install ".[test]" . # install package + test dependencies
+script: 
+  - python -m unittest -v test_python.TestStringMethods.test_isupper # run tests
+after_success:
+  - codecov # submit coverage
